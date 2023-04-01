@@ -80,7 +80,7 @@ export default function FilterBar({
 
   return (
     <div className="flex items-center gap-2 border-b-2 border-zinc-200 px-4 py-2 md:px-6">
-      <Select onValueChange={(value) => updateFilters('operacion', value)}>
+      <Select onValueChange={(value: string) => updateFilters('operacion', value)}>
         <SelectTrigger className="xgrow self-stretch">
           <SelectValue placeholder="Tipo de Operacion" className="text-left" />
         </SelectTrigger>
@@ -109,7 +109,7 @@ export default function FilterBar({
                 <Select
                   name="tipo"
                   defaultValue="Todas"
-                  onValueChange={(value) => updateFilters('tipo', value)}
+                  onValueChange={(value:string) => updateFilters('tipo', value)}
                 >
                   <SelectTrigger className="self-stretch">
                     <SelectValue
@@ -119,6 +119,28 @@ export default function FilterBar({
                   </SelectTrigger>
                   <SelectContent>
                     {filtersDD.tipoDD?.map((item) => (
+                      <SelectItem key={item.value} value={item.value}>
+                        {item.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="grid w-full max-w-sm items-center gap-1.5">
+                <Label htmlFor="tipo">Tipo de propiedad</Label>
+                <Select
+                  name="tipo"
+                  defaultValue="Todas"
+                  onValueChange={(value:string) => updateFilters('localizacion', value)}
+                >
+                  <SelectTrigger className="self-stretch">
+                    <SelectValue
+                      placeholder="Tipo de Propiedad"
+                      className="text-left"
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {filtersDD.localizacionDD?.map((item) => (
                       <SelectItem key={item.value} value={item.value}>
                         {item.name}
                       </SelectItem>
